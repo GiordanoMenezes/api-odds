@@ -1,7 +1,8 @@
-import { User } from '@models/Users';
+import User from '@models/Users';
 
-export class UsersController {
-  teste() {
+export default class UsersController {
+  static teste(): string {
     const user = new User();
+    return JSON.stringify(user);
   }
 }
