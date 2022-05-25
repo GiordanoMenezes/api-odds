@@ -3,7 +3,7 @@ import cors from 'cors';
 import { createServer } from 'http';
 import routes from './routes';
 import SoccerController from '@controllers/SoccerController';
-import { ultimoImport } from './data';
+import { ultimoImport } from '@data/OddsData';
 
 const app = express();
 

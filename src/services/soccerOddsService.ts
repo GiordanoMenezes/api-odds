@@ -1,5 +1,5 @@
 import { bookPrioridade, getKeys } from "@config/BookPrioridade";
-import { listaCountries, listaLigas, listaMatches, ultimoImport } from "@data/index";
+import { listaCountries, listaLigas, listaMatches, ultimoImport } from "@data/OddsData";
 import League from "@models/League";
 import Market from "@models/Market";
 import Match from "@models/Match";

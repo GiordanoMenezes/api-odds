@@ -1,6 +1,6 @@
 
 import { getKeys } from '@config/BookPrioridade';
-import { listaCountries, listaLigas } from '@data/index';
+import { listaCountries } from '@data/OddsData';
 import { Request, Response } from 'express';
 import SoccerOddsService from 'src/services/soccerOddsService';
 
