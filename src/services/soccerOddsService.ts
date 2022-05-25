@@ -74,7 +74,7 @@ export default class SoccerOddsService {
           };
           curLeague.matches.push(curMatch);
           listaMatches.push(curMatch);
-          console.log('Match Added: ', curMatch.description + ' - '+ curLeague.country + ' - '+ curLeague.name);
+        //  console.log('Match Added: ', curMatch.description + ' - '+ curLeague.country + ' - '+ curLeague.name);
         } else {
           console.log('Jogo já existe na base');
         };
