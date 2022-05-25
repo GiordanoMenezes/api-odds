@@ -23,7 +23,7 @@ app.get('/', (req, res) => res.json({
   message: 'Hello World!',
 }));
 
-httpServer.listen(80, () => {
+httpServer.listen(8080, () => {
   console.log('Server started on Port 80!');
   const soccerController = new SoccerController();
   console.log('------------------IMPORTACAO INICIAL - ÀS '+ Date.now()+ ' ------------------------');
