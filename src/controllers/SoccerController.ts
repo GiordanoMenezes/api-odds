@@ -2,7 +2,7 @@
 import { getKeys } from '@config/BookPrioridade';
 import { listaCountries } from '@data/OddsData';
 import { Request, Response } from 'express';
-import SoccerOddsService from 'src/services/soccerOddsService';
+import SoccerOddsService from '@services/soccerOddsService';
 
 export default class SoccerController {
   public async forceiImportOdds(
