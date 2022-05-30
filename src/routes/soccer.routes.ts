@@ -12,6 +12,8 @@ soccerRouter.post('/import', soccerController.importOdds);
 
 soccerRouter.get('/oddscompleto', soccerController.getAllOdds);
 
+soccerRouter.get('/jogosHoje', soccerController.getJogosdeHoje);
+
 // usersRouter.get('/:id', usersController.fetchById);
 
 // operadorRouter.put('/:id', operadorController.update);

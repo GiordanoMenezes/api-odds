@@ -24,7 +24,7 @@ app.get('/', (req, res) => res.json({
 }));
 
 httpServer.listen(8080, () => {
-  console.log('Server started on Port 80!');
+  console.log('Server started on Port 8080!');
   const soccerController = new SoccerController();
   console.log('------------------IMPORTACAO INICIAL - ÀS '+ Date.now()+ ' ------------------------');
   soccerController.importOdds('0').then(()=> {

@@ -37,4 +37,10 @@ export default class SoccerController {
     return response.json(listaCountries);
   }
 
+  public getJogosdeHoje(request: Request, response: Response): Response {
+    const soccerService = new SoccerOddsService();
+    const listaCountriesHoje = soccerService.jogosdeHoje();
+    return response.json(listaCountriesHoje);
+  }
+
 }
