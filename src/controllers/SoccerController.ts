@@ -1,6 +1,6 @@
 
 import { getKeys } from '@config/BookPrioridade';
-import { listaCountries } from '@data/OddsData';
+import { ultimoImport } from '@data/OddsData';
 import { Request, Response } from 'express';
 import SoccerOddsService from '@services/soccerOddsService';
 
@@ -16,7 +16,7 @@ export default class SoccerController {
     console.log('');
     console.log('------------------------FINISH---------------------------------- ', Date.now());
     console.log('');
-    return responseImport.status === 200 ? response.json(listaCountries) : response.status(500).json({'Mensagem:':'Erro o importar Odds!'});
+    return responseImport.status === 200 ? response.json(ultimoImport.listaCountries) : response.status(500).json({'Mensagem:':'Erro o importar Odds!'});
   }
 
   public async importOdds(ts: string): Promise<void> {
@@ -34,7 +34,7 @@ export default class SoccerController {
   }
 
   public getAllOdds(request: Request, response: Response): Response {
-    return response.json(listaCountries);
+    return response.json(ultimoImport.listaCountries);
   }
 
   public getJogosdeHoje(request: Request, response: Response): Response {

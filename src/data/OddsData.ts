@@ -4,7 +4,7 @@ import League from "@models/League";
 import Match from "@models/Match";
 
 
-export const listaCountries: Country[] = [];
+// export const listaCountries: Country[] = [];
 
 export const listaLigas: League[] = [];
 

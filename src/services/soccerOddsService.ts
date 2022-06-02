@@ -1,5 +1,5 @@
 import { bookPrioridade, getKeys } from "@config/BookPrioridade";
-import { listaCountries, listaLigas, listaMatches, ultimoImport } from "@data/OddsData";
+import { listaLigas, listaMatches, ultimoImport } from "@data/OddsData";
 import League from "@models/League";
 import Market from "@models/Market";
 import Match from "@models/Match";
@@ -8,6 +8,7 @@ import apisoccer from "./apisoccer";
 import {AxiosResponse}  from 'axios';
 import {format, addDays, addHours, startOfTomorrow} from 'date-fns';
 import Country from "@models/Country";
+import { structuredClone } from "@config/StructuredClone";
 
 
 export default class SoccerOddsService {
@@ -29,6 +30,7 @@ export default class SoccerOddsService {
       console.log('Bookmakers: ' + bm);
       ultimoImport.sport = response.data.scores.sport;
       ultimoImport.ts = response.data.scores.ts;
+      const listaCountries = ultimoImport.listaCountries;
       response.data.scores.categories.forEach(cat => {
         // League Handle
         let novaliga : boolean = false;
@@ -57,7 +59,7 @@ export default class SoccerOddsService {
 
         // Match Handle
         cat.matches.forEach( mat => {
-          console.log('Jogo a adicionar: ',mat.localteam.name +' x '+ mat.visitorteam.name);
+          console.log('Jogo a adicionar: ',mat.localteam.name +' x '+ mat.visitorteam.name + ' - '+ cat.name);
           let novomatch : boolean = false;
           let curMatch : Match = novaliga ? undefined : curLeague.matches.find( match => match.id === mat.id);
           if (!curMatch) {
@@ -152,14 +154,15 @@ export default class SoccerOddsService {
   }
 
    jogosdeHoje(): Country[] {
-     console.log('a');
-    const filteredCountries = [...listaCountries];
+    const cloneImport = structuredClone(ultimoImport);
+    const filteredCountries = cloneImport.listaCountries;
+    const tsstart = Date.now();
    // console.log('start: ',tsstart);
     const tsend = addHours(startOfTomorrow(),-3).getTime();
   //  const tsend = addHours(new Date(),2).getTime();
   //  console.log('end: ',tsend);
     filteredCountries.forEach( ct => ct.ligas.forEach( lig => {
-      lig.matches = lig.matches.filter( m => m.ts < tsend);
+      lig.matches = lig.matches.filter( m =>m.ts > tsstart && m.ts < tsend);
     }) ); 
     filteredCountries.forEach(fc => 
       fc.ligas =  fc.ligas.filter( fl => fl.matches.length>0));

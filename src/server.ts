@@ -9,6 +9,8 @@ const app = express();
 
 const httpServer = createServer(app);
 
+app.use(require('express-status-monitor')());
+
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb' }));
 app.use(
@@ -23,8 +25,8 @@ app.get('/', (req, res) => res.json({
   message: 'Hello World!',
 }));
 
-httpServer.listen(8080, () => {
-  console.log('Server started on Port 8080!');
+httpServer.listen(3000, () => {
+  console.log('Server started on Port 3000!');
   const soccerController = new SoccerController();
   console.log('------------------IMPORTACAO INICIAL - ÀS '+ Date.now()+ ' ------------------------');
   soccerController.importOdds('0').then(()=> {
@@ -33,6 +35,6 @@ httpServer.listen(8080, () => {
       console.log('------------------NOVO CICLO DE IMPORTACAO DE ODDS ÀS '+ Date.now()+ ' ------------------------');
       console.log('TS: ', ts);
       soccerController.importOdds(ts);
-    },60000);
+    },20000);
   });
 });
